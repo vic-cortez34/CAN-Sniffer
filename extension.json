@@ -1,0 +1,13 @@
+{
+  "name": "CAN Sniffer",
+  "apiVersion": "1.0.0",
+  "author": "Victor Cortez",
+  "version": "0.0.1",
+  "description": "A High Level Analyzer extension for Saleae Logic 2 that concatenates CAN frame fields into readable messages and highlights changing data bytes for repeated CAN IDs.",
+  "extensions": {
+    "CAN Sniffer": {
+      "type": "HighLevelAnalyzer",
+      "entryPoint": "CanSniffer.CanConcatenator"
+    }
+  }
+}
