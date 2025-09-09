@@ -13,7 +13,7 @@ from datetime import datetime
 class CanConcatenator(HighLevelAnalyzer):
     # List of settings that a user can set for this High Level Analyzer.
     # Define settings as CLASS attributes so Logic can validate and provide values
-    my_choices_setting = ChoicesSetting(choices=('Normal', 'Notched'), label = 'Mode')
+    my_choices_setting = ChoicesSetting(choices=('Normal', 'Notched', 'Unfiltered'), label = 'Mode')
     my_notched_setting = NumberSetting(label='Period(ms)')
     result_types = {
         'canframe': {
@@ -57,8 +57,8 @@ class CanConcatenator(HighLevelAnalyzer):
             previous_data = None
             if self.currentId in self.seen_id_data:
                 previous_data = self.seen_id_data[self.currentId]
-                # If data is the same as previously seen, skip this frame
-                if previous_data == self.currentData:
+                # If in Normal mode and data is the same as previously seen, skip this frame
+                if self.my_choices_setting == 'Normal' and previous_data == self.currentData:
                     return None
             
             # Check notched mode timing filter
